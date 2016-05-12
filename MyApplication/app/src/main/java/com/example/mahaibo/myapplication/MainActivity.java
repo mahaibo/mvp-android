@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mahaibo.myapplication.mvp.LoginPresenter;
 import com.example.mahaibo.myapplication.mvp.LoginView;
-import com.example.mahaibo.myapplication.mvp.Presenter;
 
 public class MainActivity extends AppCompatActivity implements LoginView,View.OnClickListener{
     TextView mTextView;
-    Presenter mPresenter;
+    LoginPresenter mPresenter;
     Button btnLogin;
 
     @Override
@@ -19,8 +19,9 @@ public class MainActivity extends AppCompatActivity implements LoginView,View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mPresenter=new Presenter();
+        mPresenter=new LoginPresenter();
         mPresenter.attach(this);
+        mPresenter.bindView(this);
         btnLogin=(Button)findViewById(R.id.login);
         btnLogin.setOnClickListener(this);
     }
