@@ -3,6 +3,8 @@ package com.example.mahaibo.myapplication;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements LoginView,View.On
     TextView mTextView;
     LoginPresenter mPresenter;
     Button btnLogin;
+    WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,28 @@ public class MainActivity extends AppCompatActivity implements LoginView,View.On
         mPresenter.bindView(this);
         btnLogin=(Button)findViewById(R.id.login);
         btnLogin.setOnClickListener(this);
+
+        mWebView = (WebView) findViewById(R.id.web_view);
+        mWebView.loadUrl("file:///android_asset/video.html");
+
+
+        WebSettings s = mWebView.getSettings();
+
+        s.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+
+        s.setUseWideViewPort(true);
+
+        s.setLoadWithOverviewMode(true);
+
+        s.setJavaScriptEnabled(true);
+
+        s.setGeolocationEnabled(true);
+
+        s.setDomStorageEnabled(true);
+
+        mWebView.requestFocus();
+
+        mWebView.setScrollBarStyle(0);
     }
 
     @Override
